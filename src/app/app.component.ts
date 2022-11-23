@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Subject, Observable} from 'rxjs';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { GeolocationService } from 'src/services/geolocation.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ export class AppComponent implements OnInit {
   latitude: any;
   longitude: any;
 
+  map: any;
+  marker: L.Marker<any>;
 
   constructor(private locationService: GeolocationService){
 
@@ -56,6 +59,12 @@ export class AppComponent implements OnInit {
     this.locationService.getPosition().then(pos => {
         this.latitude = pos.lat;
         this.longitude = pos.lng;
+        this.map = L.map('map').setView([this.latitude, this.longitude], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(this.map);
+        this.marker = L.marker([this.latitude, this.longitude]).addTo(this.map);
     });
   }
 }
