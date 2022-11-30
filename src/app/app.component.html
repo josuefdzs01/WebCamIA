@@ -3,7 +3,9 @@
     Identificador de objetos
   </h1>
 
-  <div>
+  <video autoplay muted width="300px" height="300px" #video></video>
+
+  <!-- <div>
     <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="mostrarWebcam"
             [imageQuality]="1"
             (initError)="handleInitError($event)"
@@ -11,28 +13,31 @@
     <br/>
     <button  class="btn btn-primary m-5" (click)="triggerCaptura();">Tomar foto</button>
     <br/>
+  </div> -->
+</div>
+
+<div class="list-group">
+  <div class="list-group-item" *ngFor="let item of predictions">
+      {{item.className}} - {{item.probability | percent}}
   </div>
 </div>
 
-<div class="row mb-5">
-  <div class="snapshot col-6" style="text-align: center;" *ngIf="imagenWebcam">
-    <h2>Que buena foto :)</h2>
-    <img [src]="imagenWebcam.imageAsDataUrl"/>
-  </div>
-  
-  <div class="snapshot col-6 row" style="text-align: center;" *ngIf="imagenWebcam">
+<div class="row mb-5 mx-0">
+  <div class="snapshot col-12 row" style="text-align: center;">
     <div class="col-12">
       <h2>Localizacion!</h2>
     </div>
-    <div class="col-12 w-100- h-100">
-      <div id="map" class="w-100 h-100"></div>
+    <div class="col-12 row">
+      <div class="col-6">
+        <p>Latitud: {{this.latitude}}</p>
+      </div>
+      <div class="col-6">
+        <p>Longitud: {{this.longitude}}</p>
+      </div>
     </div>
-    <!-- <div class="col-6">
-      <p>Latitud: {{this.latitude}}</p>
+    <div class="col-12">
+      <div id="map" class="w-100" style="height: 50vh;"></div>
     </div>
-    <div class="col-6">
-      <p>Longitud: {{this.longitude}}</p>
-    </div> -->
   </div>
 </div>
 
