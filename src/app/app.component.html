@@ -16,23 +16,25 @@
   </div> -->
 </div>
 
-<div class="list-group">
-  <div class="list-group-item" *ngFor="let item of predictions">
-      {{item.className}} - {{item.probability | percent}}
+<div class="row justify-content-center mb-5">
+  <div class="list-group col-6">
+    <div class="list-group-item" *ngFor="let item of predictions">
+        {{item.className}} - {{item.probability | percent}}
+    </div>
   </div>
 </div>
 
-<div class="row mb-5 mx-0">
-  <div class="snapshot col-12 row" style="text-align: center;">
+<div class="row mb-5 mx-0 justify-content-center">
+  <div class="snapshot col-12 row px-0" style="text-align: center;">
     <div class="col-12">
-      <h2>Localizacion!</h2>
+      <h2>Localizacion</h2>
     </div>
     <div class="col-12 row">
       <div class="col-6">
-        <p>Latitud: {{this.latitude}}</p>
+        <p class="font-weight-bold">Latitud: {{this.latitude}}</p>
       </div>
       <div class="col-6">
-        <p>Longitud: {{this.longitude}}</p>
+        <p class="font-weight-bold">Longitud: {{this.longitude}}</p>
       </div>
     </div>
     <div class="col-12">
